@@ -3,3 +3,11 @@
 ## TODO
 - Script di installazione dei pacchetti dei pacchetti necessari
 - Script per il ripristino in automatico dei pacchetti
+
+# SOFTWARE UTILIZZATI
+- Albert
+- CopyQ
+- Flameshot
+- Dunst
+- Polybar
+-

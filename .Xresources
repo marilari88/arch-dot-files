@@ -1,0 +1,8 @@
+! Xft font config
+Xft.dpi: 121
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintsfull
+Xft.lcdfilter: lcddefault
