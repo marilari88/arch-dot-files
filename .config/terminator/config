@@ -1,0 +1,39 @@
+[global_config]
+  borderless = True
+  extra_styling = False
+  tab_position = bottom
+  title_font = Noto Sans Mono 14
+[keybindings]
+[profiles]
+  [[default]]
+    audible_bell = True
+    icon_bell = False
+    background_darkness = 0.79
+    background_type = transparent
+    cursor_shape = underline
+    cursor_color = "#1c71d8"
+    font = Noto Sans Mono 10
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    scrollbar_position = hidden
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 35:35
+      maximised = False
+      fullscreen = False
+      size = 525, 985
+      title = marco@arch-marco:~
+      last_active_term = aa21337f-63e5-46b4-9c13-948f2ad110bb
+      last_active_window = False
+    [[[terminal1]]]
+      type = Terminal
+      parent = child0
+      order = 0
+      profile = default
+      uuid = aa21337f-63e5-46b4-9c13-948f2ad110bb
+[plugins]
