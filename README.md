@@ -10,4 +10,9 @@
 - Flameshot
 - Dunst
 - Polybar
--
+- picom
+- i3
+- vim
+- ranger
+- terminator
+
