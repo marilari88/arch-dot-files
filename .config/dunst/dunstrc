@@ -429,3 +429,8 @@
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
+
+[play_sound]
+    summary = "*"
+    script = $HOME/.config/dunst/beep.sh
+
