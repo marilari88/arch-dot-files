@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:nontosana mono 12
+font pango:notosana mono 12
 # font pango: Ubuntu Mono 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -326,6 +326,7 @@ exec_always --no-startup-id picom -f
 # Launch
 exec_always --no-startup-id albert
 exec_always --no-startup-id copyq
+exec_always --no-startup-id $HOME/.config/conky/start.sh
 
 # Remove titlebar
 for_window [class="^.*"] border pixel 0
@@ -362,3 +363,4 @@ bindsym Print exec --no-startup-id flameshot full -c -p ~/Immagini/Captures
 bindsym $mod+Print exec --no-startup-id flameshot gui -p ~/Immagini/Captures
 
 # bindsym --release Print exec scrot -s
+
