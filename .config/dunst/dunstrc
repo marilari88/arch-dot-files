@@ -432,5 +432,4 @@
 
 [play_sound]
     summary = "*"
-    script = $HOME/.config/dunst/beep.sh
-
+    script = ~/.config/dunst/beep.sh
