@@ -65,6 +65,10 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
+# switch workspace
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -326,7 +330,8 @@ exec_always --no-startup-id picom -f
 # Launch
 exec_always --no-startup-id albert
 exec_always --no-startup-id copyq
-exec_always --no-startup-id $HOME/.config/conky/start.sh
+# exec_always --no-startup-id $HOME/.config/conky/start.sh
+exec_always --no-startup-id libinput-gestures-setup start
 
 # Remove titlebar
 for_window [class="^.*"] border pixel 0
