@@ -1,4 +1,4 @@
-let mapleader = "," " map leader to comma
+let mapleader = ","
 set relativenumber
 
 set nocompatible
@@ -19,6 +19,7 @@ set ignorecase
 set smartcase
 set backspace=indent,eol,start
 set autoindent
+set smartindent
 set nostartofline
 set ruler
 set laststatus=2
@@ -27,6 +28,11 @@ set laststatus=2
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
@@ -64,14 +70,17 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
 
-" oceanic-next
-Plug 'mhartington/oceanic-next'
- if (has("termguicolors"))
-  set termguicolors
- endif
+Plug 'franbach/miramare'
+    set termguicolors
+    let g:miramare_enable_italic = 1
+    let g:miramare_disable_italic_comment = 1
 
-colorscheme OceanicNext
-
-Plug 'tpope/vim-surround'
-
+Plug 'itchyny/lightline.vim'
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+Plug 'mattn/emmet-vim'
 call plug#end()
+
+colorscheme miramare
