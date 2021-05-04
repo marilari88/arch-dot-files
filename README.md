@@ -16,3 +16,9 @@
 - ranger
 - terminator
 
+# Shortcut
+## VIM
+### emmet
+```
+<C+y>, " Per attivare emmet dopo la digitazione
+```

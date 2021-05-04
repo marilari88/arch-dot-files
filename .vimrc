@@ -28,6 +28,8 @@ set laststatus=2
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set splitbelow
+set termwinsize=10x0
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -70,8 +72,12 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
 
+Plug 'mhartington/oceanic-next'
+ if (has("termguicolors"))
+  set termguicolors
+ endif
+ 
 Plug 'franbach/miramare'
-    set termguicolors
     let g:miramare_enable_italic = 1
     let g:miramare_disable_italic_comment = 1
 
@@ -81,6 +87,13 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
 Plug 'mattn/emmet-vim'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <Leader>p :Rg<CR>
+nnoremap <silent> <leader>r :GFiles<cr>
+
 call plug#end()
 
-colorscheme miramare
+colorscheme OceanicNext
