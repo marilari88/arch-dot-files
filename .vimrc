@@ -103,6 +103,18 @@ nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <Leader>p :Rg<CR>
 nnoremap <silent> <leader>r :GFiles<cr>
 
+" Snippets
+" Track the engine.
+Plug 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"   
+
 call plug#end()
 
 colorscheme OceanicNext
