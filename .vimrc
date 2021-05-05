@@ -1,5 +1,6 @@
 let mapleader = ","
 set relativenumber
+set number
 
 set nocompatible
 
@@ -43,6 +44,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
@@ -86,7 +88,14 @@ set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
-Plug 'mattn/emmet-vim'
+
+" Emmet
+Plug 'mattn/emmet-vim', {}
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
