@@ -18,7 +18,12 @@
 
 # Shortcut
 ## VIM
+### Terminale
+```
+<C+w> # Per attivare la modalità normale nel terminale (Permette lo scorrimento)
+```
+
 ### emmet
 ```
-<C+y>, " Per attivare emmet dopo la digitazione
+<C+y>, # Per attivare emmet dopo la digitazione
 ```
