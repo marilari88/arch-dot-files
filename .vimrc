@@ -29,6 +29,8 @@ set laststatus=2
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+"Apro il terminale in baso
 set splitbelow
 set termwinsize=10x0
 
@@ -36,6 +38,8 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+inoremap jj <esc>
+cnoremap jj <C-C>
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
@@ -73,6 +77,28 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co - exclude-standard', 'find %s -type f']
+
+Plug 'Xuyuanp/nerdtree-git-plugin' 
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '✹'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+let g:gitgutter_sign_modified_removed = '-'
 
 Plug 'mhartington/oceanic-next'
  if (has("termguicolors"))
@@ -83,11 +109,11 @@ Plug 'franbach/miramare'
     let g:miramare_enable_italic = 1
     let g:miramare_disable_italic_comment = 1
 
-Plug 'itchyny/lightline.vim'
-set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts = 1
+
+Plug 'tpope/vim-fugitive'
 
 " Emmet
 Plug 'mattn/emmet-vim', {}
@@ -100,8 +126,28 @@ let g:user_emmet_settings = {
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <Leader>p :Rg<CR>
-nnoremap <silent> <leader>r :GFiles<cr>
+nnoremap <silent> <Leader-p> :Rg<CR>
+noremap <silent> <leader-r> :GFiles<cr>
+
+command! FZFMru call fzf#run({
+\ 'source':  reverse(s:all_files()),
+\ 'sink':    'edit',
+\ 'options': '-m -x +s',
+\ 'down':    '40%' })
+
+function! s:all_files()
+  return extend(
+  \ filter(copy(v:oldfiles),
+  \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
+  \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
+endfunction
+
+
+Plug 'frazrepo/vim-rainbow'
+let g:rainbow_active = 1
+
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 
 " Snippets
 " Track the engine.
@@ -118,3 +164,4 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 call plug#end()
 
 colorscheme OceanicNext
+let g:airline_theme='oceanicnext'

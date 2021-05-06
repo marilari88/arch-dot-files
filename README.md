@@ -27,3 +27,10 @@
 ```
 <C+y>, # Per attivare emmet dopo la digitazione
 ```
+
+### commentary
+```
+gcc # Commentare una riga
+gc in visual mode per commentare la selezione
+gcap # commentare un paragrafo
+```
