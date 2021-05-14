@@ -1,12 +1,18 @@
-let mapleader = ","
-set relativenumber
-set number
+let mapleader = " "
 
+set number relativenumber
 set nocompatible
 
 if has('filetype')
   filetype indent plugin on
 endif
+"
+" => Color column
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" => Remove swap file
+set noswapfile
 
 if has('syntax')
   syntax on
@@ -30,21 +36,47 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-"Apro il terminale in baso
+" Apro il terminale in basso
 set splitbelow
 set termwinsize=10x0
 
+" keep 5 lines between the cursor and the edge of the screen
+set scrolloff=6
+
+" movimento tra i tabs
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+tmap <C-h> <C-W>h
+tmap <C-j> <C-W>j
+tmap <C-k> <C-W>k
+tmap <C-l> <C-W>l
+
 inoremap jj <esc>
 cnoremap jj <C-C>
+
+" => Help
+nmap <leader>? :Maps<CR>
+
+" => Windows resizing
+nmap <left> <C-w>5<
+nmap <right> <C-w>5>
+nmap <down> <C-w>5+
+nmap <up> <C-w>5-
+
+tmap <left> <C-w>5<
+tmap <right> <C-w>5>
+tmap <down> <C-w>5+
+tmap <up> <C-w>5-
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 call plug#begin('~/.vim/plugged')
+
+Plug 'mhinz/vim-startify'
 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -114,6 +146,7 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 
 Plug 'tpope/vim-fugitive'
+map <Leader>g :Git<CR>
 
 " Emmet
 Plug 'mattn/emmet-vim', {}
@@ -150,7 +183,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 
 " Snippets
-" Track the engine.
 Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
@@ -160,6 +192,15 @@ Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"   
+
+Plug 'vim-ctrlspace/vim-ctrlspace'
+nnoremap <silent><C-p> :CtrlSpace O<CR>
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
+nnoremap <leader>bb :CtrlSpace<CR>
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
 
 call plug#end()
 
