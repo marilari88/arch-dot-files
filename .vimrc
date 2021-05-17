@@ -61,18 +61,22 @@ cnoremap jj <C-C>
 nmap <leader>? :Maps<CR>
 
 " => Windows resizing
-nmap <left> <C-w>5<
-nmap <right> <C-w>5>
-nmap <down> <C-w>5+
-nmap <up> <C-w>5-
+nmap <C-left> <C-w>5<
+nmap <C-right> <C-w>5>
+nmap <C-down> <C-w>5+
+nmap <C-up> <C-w>5-
 
-tmap <left> <C-w>5<
-tmap <right> <C-w>5>
-tmap <down> <C-w>5+
-tmap <up> <C-w>5-
+tmap <C-left> <C-w>5<
+tmap <C-right> <C-w>5>
+tmap <C-down> <C-w>5+
+tmap <C-up> <C-w>5-
+
+nmap <Leader>q :q<CR>
+nmap <Leader>w :w<CR>
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+autocmd BufNewFile,BufRead *.{png,jpg,jpeg} :!feh % &
 
 call plug#begin('~/.vim/plugged')
 
