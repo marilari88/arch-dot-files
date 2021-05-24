@@ -39,6 +39,14 @@ gr # go to refereces
 ```
 <C+y>, # Per attivare emmet dopo la digitazione
 ```
+
+### FZF
+```
+<C+p> # Per richiamare elenco dei file nel buffer
+<Leader>p # Per ricercare file nel progetto
+<Leader>r # Per ricercare stringhe all'interno del progetto (ripgrep)
+```
+
 ### NERDTree
 ```
 <Leader+n> # Per aprire l'instanza aperta di NERDTree
@@ -70,7 +78,7 @@ gcap # commentare un paragrafo
 ```
 ### Fugitive
 ```
-<Leader> g # Aprire il pannello :Git
+<Leader>g # Aprire il pannello :Git
 s # Aggiungere file a stage
 cc # Commit del file
 :Git push

@@ -91,7 +91,23 @@ Plug 'jparise/vim-graphql'
 
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ['coc-tsserver','coc-prettier','coc-eslint']
+let g:coc_global_extensions = ['coc-tsserver','coc-prettier','coc-eslint','coc-json','coc-css']
+
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
+inoremap <silent><expr> <cr> pumvisible() ?  coc#_select_confirm()
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nnoremap <silent> K :call CocAction('doHover')<CR>
 
@@ -109,11 +125,11 @@ nmap <leader>rn <Plug>(coc-rename)
 " nerdtree
 Plug 'preservim/nerdtree'
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co - exclude-standard', 'find %s -type f']
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 Plug 'Xuyuanp/nerdtree-git-plugin' 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -162,23 +178,10 @@ let g:user_emmet_settings = {
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <Leader-p> :Rg<CR>
-noremap <silent> <leader-r> :GFiles<cr>
-
-command! FZFMru call fzf#run({
-\ 'source':  reverse(s:all_files()),
-\ 'sink':    'edit',
-\ 'options': '-m -x +s',
-\ 'down':    '40%' })
-
-function! s:all_files()
-  return extend(
-  \ filter(copy(v:oldfiles),
-  \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
-  \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
-endfunction
-
+nnoremap <silent> <C-p> :Buffers<CR>
+" nnoremap <silent> <C-P> :Files<CR>
+nnoremap <silent> <Leader>r :Rg<CR>
+noremap <silent> <Leader>p :GFiles<cr>
 
 Plug 'frazrepo/vim-rainbow'
 let g:rainbow_active = 1
@@ -193,19 +196,19 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"   
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"   
 
-Plug 'vim-ctrlspace/vim-ctrlspace'
-nnoremap <silent><C-p> :CtrlSpace O<CR>
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprev<CR>
-nnoremap <leader>bb :CtrlSpace<CR>
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-let g:CtrlSpaceSaveWorkspaceOnExit = 1
-
+" Plug 'vim-ctrlspace/vim-ctrlspace'
+" nnoremap <silent><C-p> :CtrlSpace O<CR>
+" nnoremap <leader>bn :bnext<CR>
+" nnoremap <leader>bp :bprev<CR>
+" nnoremap <leader>bb :CtrlSpace<CR>
+" let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+" let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+" let g:CtrlSpaceSaveWorkspaceOnExit = 1
+ 
 call plug#end()
 
 colorscheme OceanicNext
